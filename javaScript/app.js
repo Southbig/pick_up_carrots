@@ -10,7 +10,7 @@ let selectCarrot
 let carrot
 let bug
 
-let carrotCount
+let carrotCount = round.getElementsByClassName('carrot');
 
 
 const handleStart = () => {
@@ -30,9 +30,7 @@ const handleStart = () => {
       round.appendChild(carrot)
       round.appendChild(bug)
 
-      carrotCount = round.getElementsByClassName('carrot');
-
-      // console.log(p1.length)
+      // carrotCount = round.getElementsByClassName('carrot');
       carrotNum.textContent = carrotCount.length
 
       const handleCarrotRemove = (e) => {
@@ -51,7 +49,7 @@ const handleStart = () => {
         }
         if (e.target.classList.value === 'carrot') {
           e.target.remove()
-          carrotNum.textContent--
+          carrotNum.textContent = carrotCount.length
         }
         if (carrotCount.length === 0) {
           console.log('타임 멈춤')
@@ -79,6 +77,7 @@ const handleStart = () => {
                 round.firstChild
               );
             }
+            carrotNum.textContent = carrotCount.length
             timer = null
             onOff = false
           }

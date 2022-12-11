@@ -11,6 +11,27 @@
   background: url(/img/background.png) center/cover;
 }
 
+.game_info {
+  margin: auto;
+  width: 300px;
+  height: 150px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+}
+
+.startBtn {
+  margin: 0 auto;
+  margin-bottom: 10px;
+  width: 100px;
+}
+
+.time, .carrotNum {
+  font-size: 40px;
+}
+
 .round{
   position: absolute;
   top: 550px;
