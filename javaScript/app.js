@@ -1,6 +1,7 @@
 const startBtn = document.querySelector('.startBtn')
 const round = document.querySelector('.round')
 const time = document.querySelector('.time')
+const carrotNum = document.querySelector('.carrotNum')
 
 let onOff = false
 let timer
@@ -9,8 +10,11 @@ let selectCarrot
 let carrot
 let bug
 
+let carrotCount
+
 
 const handleStart = () => {
+  time.textContent = 10
   if (!onOff) {
     startBtn.textContent = '정지'
     for (let i = 0; i < 10; i++) {
@@ -26,9 +30,35 @@ const handleStart = () => {
       round.appendChild(carrot)
       round.appendChild(bug)
 
+      carrotCount = round.getElementsByClassName('carrot');
 
-      const handleCarrotRemove = () => {
-        console.log('지우기 성공')
+      // console.log(p1.length)
+      carrotNum.textContent = carrotCount.length
+
+      const handleCarrotRemove = (e) => {
+        if (e.target.classList.value === 'bug') {
+          console.log('bug 클릭 게임 중지')
+          clearInterval(timer)
+          startBtn.textContent = '시작'
+          onOff = false
+          while (round.hasChildNodes()) {
+            round.removeChild(
+              round.firstChild
+            );
+          }
+          timer = null
+          onOff = false
+        }
+        if (e.target.classList.value === 'carrot') {
+          e.target.remove()
+          carrotNum.textContent--
+        }
+        if (carrotCount.length === 0) {
+          console.log('타임 멈춤')
+          clearInterval(timer)
+          startBtn.textContent = '시작'
+        }
+        console.log(carrotCount.length)
       }
 
       carrot.addEventListener('click', handleCarrotRemove)
