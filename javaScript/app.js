@@ -5,18 +5,34 @@ const time = document.querySelector('.time')
 let onOff = false
 let timer
 
+let selectCarrot
+let carrot
+let bug
+
+
 const handleStart = () => {
   if (!onOff) {
     startBtn.textContent = '정지'
     for (let i = 0; i < 10; i++) {
-      let rabbit = document.createElement('span')
-      let bug = document.createElement('span')
-      rabbit.classList = 'rabbit'
+      carrot = document.createElement('img')
+      bug = document.createElement('img')
+
+      carrot.src = './img/carrot.png'
+      bug.src = './img/bug.png'
+
+      carrot.classList = 'carrot'
       bug.classList = 'bug'
-      round.appendChild(rabbit)
-      rabbit.textContent = 'rabbit'
+
+      round.appendChild(carrot)
       round.appendChild(bug)
-      bug.textContent = 'bug'
+
+
+      const handleCarrotRemove = () => {
+        console.log('지우기 성공')
+      }
+
+      carrot.addEventListener('click', handleCarrotRemove)
+      bug.addEventListener('click', handleCarrotRemove)
 
       if (!timer) {
         timer = setInterval(() => {
@@ -25,15 +41,19 @@ const handleStart = () => {
           }
           if (time.textContent === '0') {
             console.log('끝')
+            startBtn.textContent = '시작'
             clearInterval(timer)
             time.textContent = 10
+            while (round.hasChildNodes()) {
+              round.removeChild(
+                round.firstChild
+              );
+            }
             timer = null
             onOff = false
           }
         }, 1000)
       }
-
-
       onOff = true
     }
   } else {
@@ -50,9 +70,19 @@ const handleStart = () => {
   }
 }
 
-if (time.textContent === 10) {
-  clearInterval(timer)
-  timer = null
-}
+// if (time.textContent === 10) {
+//   clearInterval(timer)
+//   timer = null
+// }
 
 startBtn.addEventListener('click', handleStart)
+
+const handleCarrotRemove = () => {
+  console.log('지우기 성공')
+}
+
+carrot?.document.querySelector('.carrot')
+console.log(carrot, selectCarrot)
+
+
+carrot?.addEventListener('click', handleCarrotRemove)
