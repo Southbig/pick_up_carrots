@@ -3,6 +3,7 @@ const round = document.querySelector('.round')
 const time = document.querySelector('.time')
 const carrotNum = document.querySelector('.carrotNum')
 
+
 let onOff = false
 let timer
 
@@ -12,6 +13,18 @@ let bug
 
 let carrotCount = round.getElementsByClassName('carrot');
 
+const roundRect = round.getBoundingClientRect()
+
+let x1 = 0
+let y1 = 0
+let x2 = roundRect.width - 80
+let y2 = roundRect.height - 80
+
+console.log(roundRect)
+
+function randomPosition(min, max) {
+  return Math.random() * (max - min) + min;
+}
 
 const handleStart = () => {
   time.textContent = 10
@@ -26,6 +39,20 @@ const handleStart = () => {
 
       carrot.classList = 'carrot'
       bug.classList = 'bug'
+
+      const x = randomPosition(x1, x2)
+      const y = randomPosition(y1, y2)
+
+      carrot.style.position = 'absolute'
+      carrot.style.left = `${x}px`
+      carrot.style.top = `${y}px`
+
+      const xx = randomPosition(x1, x2)
+      const yy = randomPosition(y1, y2)
+
+      bug.style.position = 'absolute'
+      bug.style.left = `${xx}px`
+      bug.style.top = `${yy}px`
 
       round.appendChild(carrot)
       round.appendChild(bug)
